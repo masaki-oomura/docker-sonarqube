@@ -17,7 +17,10 @@ ENV JAVA_HOME='/opt/java/openjdk' \
     SQ_DATA_DIR="/opt/sonarqube/data" \
     SQ_EXTENSIONS_DIR="/opt/sonarqube/extensions" \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
-    SQ_TEMP_DIR="/opt/sonarqube/temp"
+    SQ_TEMP_DIR="/opt/sonarqube/temp" \
+    SONAR_JDBC_URL=jdbc:postgresql://sonarqubedb.sonar-qube-test.svc.cluster.local:5432/sonarqubedb \
+    SONAR_JDBC_USERNAME=user \
+    SONAR_JDBC_PASSWORD=password
 
 RUN set -eux; \
     groupadd --system --gid 1000 sonarqube; \
@@ -47,11 +50,9 @@ RUN set -eux; \
     chmod -R 555 ${SONARQUBE_HOME}; \
     chmod -R ugo+wrX "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; \
     apt-get remove -y gnupg unzip curl; \
-    rm -rf /var/lib/apt/lists/*; \
-    rm -rf ${SONARQUBE_HOME}/conf/sonar.properties
+    rm -rf /var/lib/apt/lists/*; 
 
 COPY entrypoint.sh ${SONARQUBE_HOME}/docker/
-COPY sonar.properties ${SONARQUBE_HOME}/conf/
 
 WORKDIR ${SONARQUBE_HOME}
 EXPOSE 9000
