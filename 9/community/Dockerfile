@@ -47,7 +47,8 @@ RUN set -eux; \
     chmod -R 555 ${SONARQUBE_HOME}; \
     chmod -R ugo+wrX "${SQ_DATA_DIR}" "${SQ_EXTENSIONS_DIR}" "${SQ_LOGS_DIR}" "${SQ_TEMP_DIR}"; \
     apt-get remove -y gnupg unzip curl; \
-    rm -rf /var/lib/apt/lists/*;
+    rm -rf /var/lib/apt/lists/*; \
+    rm -rf ${SONARQUBE_HOME}/conf/sonar.properties
 
 COPY entrypoint.sh ${SONARQUBE_HOME}/docker/
 COPY sonar.properties ${SONARQUBE_HOME}/conf/
