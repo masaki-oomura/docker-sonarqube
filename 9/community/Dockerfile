@@ -50,6 +50,7 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*;
 
 COPY entrypoint.sh ${SONARQUBE_HOME}/docker/
+COPY sonar.properties ${SONARQUBE_HOME}/conf/
 
 WORKDIR ${SONARQUBE_HOME}
 EXPOSE 9000
