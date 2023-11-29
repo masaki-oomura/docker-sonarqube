@@ -19,7 +19,7 @@ ENV DOCKER_RUNNING="true" \
     SQ_EXTENSIONS_DIR="/opt/sonarqube/extensions" \
     SQ_LOGS_DIR="/opt/sonarqube/logs" \
     SQ_TEMP_DIR="/opt/sonarqube/temp" \
-    SONAR_JDBC_URL=jdbc:postgresql://postgresql.sonar-qube.svc.cluster.local:5432/sonarqubedb \
+    SONAR_JDBC_URL=jdbc:postgresql://postgresql.sonarqube.svc.cluster.local:5432/sonarqubedb \
     SONAR_JDBC_USERNAME=user \
     SONAR_JDBC_PASSWORD=password
 
